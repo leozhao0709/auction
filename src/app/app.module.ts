@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { GlobalModule } from './global/global.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { GlobalModule } from './global/global.module';
     BrowserModule,
     FormsModule,
     HttpModule,
+    AppRoutingModule,
     HomeModule,
     GlobalModule
   ],

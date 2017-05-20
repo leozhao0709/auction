@@ -7,11 +7,16 @@ import { ProductItemComponent } from './product-list/product-item/product-item.c
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { CarouselComponent } from './product-list/carousel/carousel.component';
+import { ProductService } from './services/product.service';
+import { ProductCommentComponent } from './product-detail/product-comment/product-comment.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     ProductListComponent,
@@ -19,10 +24,15 @@ import { CarouselComponent } from './product-list/carousel/carousel.component';
     CarouselComponent,
     HomeComponent,
     ProductItemComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductCommentComponent,
+    FilterPipe
   ],
   exports: [
     HomeComponent
+  ],
+  providers: [
+    ProductService
   ]
 })
 export class HomeModule { }

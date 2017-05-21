@@ -11,6 +11,7 @@ import { ProductService } from './services/product.service';
 import { ProductCommentComponent } from './product-detail/product-comment/product-comment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipe/filter.pipe';
+import { ProductNewCommentComponent } from './product-detail/product-new-comment/product-new-comment.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { FilterPipe } from './pipe/filter.pipe';
     ProductItemComponent,
     ProductDetailComponent,
     ProductCommentComponent,
-    FilterPipe
+    FilterPipe,
+    ProductNewCommentComponent
   ],
   exports: [
     HomeComponent

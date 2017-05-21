@@ -14,11 +14,26 @@ export class StarsComponent implements OnInit {
 
   zeroStars: boolean[] = [];
 
+  @Input()
+  readonly = true;
+
   constructor() { }
 
   ngOnInit() {
-    for (let i = 1; i <= this.totalRating; i++) {
-      this.zeroStars.push(i > this.rating);
+    this.showStar(this.rating, this.totalRating);
+  }
+
+  private showStar(currentRate: number, totalRates: number) {
+    this.zeroStars = [];
+    for (let i = 1; i <= totalRates; i++) {
+      this.zeroStars.push(i > currentRate);
+    }
+  }
+
+  starClick(index: number) {
+    if (!this.readonly) {
+      this.rating = index + 1;
+      this.showStar(this.rating, this.totalRating);
     }
   }
 

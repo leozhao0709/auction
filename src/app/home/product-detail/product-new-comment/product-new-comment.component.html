@@ -1,0 +1,9 @@
+<div>
+  <app-stars [rating]="newRating" [readonly]="false"></app-stars>
+  <div class="">
+    <textarea #textarea></textarea>
+  </div>
+  <div class="">
+    <button class="btn btn-default" type="button" (click)="submitNewComment(textarea)">提交</button>
+  </div>
+</div>

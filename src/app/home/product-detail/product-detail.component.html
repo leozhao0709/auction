@@ -13,6 +13,11 @@
   </div>
 </div>
 
-<div class="" *ngFor="let comment of comments">
-  <app-product-comment [comment]="comment"></app-product-comment>
+<div class="well">
+  <div class="">
+    <app-product-new-comment></app-product-new-comment>
+  </div>
+  <div class="" *ngFor="let comment of comments">
+    <app-product-comment [comment]="comment"></app-product-comment>
+  </div>
 </div>

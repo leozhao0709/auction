@@ -17,8 +17,7 @@ export class ProductListComponent implements OnInit {
 
   titleFilter: FormControl = new FormControl();
 
-  constructor(private _productService: ProductService, ) {
-  }
+  constructor(private _productService: ProductService, ) { }
 
   ngOnInit() {
     this.products = this._productService.getProducts();

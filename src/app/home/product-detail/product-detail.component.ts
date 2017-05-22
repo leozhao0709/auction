@@ -14,20 +14,30 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   comments: Comment[];
 
-  constructor(private _route: ActivatedRoute, private _productService: ProductService, ) { }
+  isNewCommentHidden = true;
 
-  ngOnInit() {
+  constructor(private _route: ActivatedRoute, private _productService: ProductService, ) {
     const id: number = +this._route.snapshot.params['id'];
     this.product = this._productService.getProduct(id);
-
-    // this._route.params.subscribe(
-    //   (params: Params) => {
-    //     const id: number = params['id'];
-    //     this.product = this._productService.getProduct(id);
-    //   }
-    // );
-
     this.comments = this._productService.getCommentsForProductId(id);
+
+    this._productService.newCommentSubmit.subscribe(
+      (productid: number) => {
+        if (productid === id) {
+          this.comments = this._productService.getCommentsForProductId(productid);
+          this.isNewCommentHidden = true;
+
+          const totalRating = this.comments.reduce(
+            (sum, comment) => {
+              return sum + comment.rating;
+            }, 0);
+          this.product.rating = totalRating / this.comments.length;
+        }
+      }
+    );
+  }
+
+  ngOnInit() {
   }
 
 }

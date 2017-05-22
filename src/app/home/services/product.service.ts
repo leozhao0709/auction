@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Product } from '../../shared/product.model';
 import { Comment } from '../../shared/comment';
 
 @Injectable()
 export class ProductService {
+
+  productsChanged = new EventEmitter<Product[]>();
+  newCommentSubmit = new EventEmitter<number>();
 
   private _products: Product[] = [
     new Product(1, '第一个商品', 1.99, 3.5, '这是第一个商品,是在练习慕课网angular入门实战时创建的', ['电子产品', '硬件设备']),
@@ -23,16 +26,22 @@ export class ProductService {
 
   constructor() { }
 
+  /**
+   * getAllCategories
+   */
+  public getAllCategories(): string[] {
+    return ['电子产品', '硬件设备', '图书'];
+  }
 
   public getProducts(): Product[] {
-    return this._products;
+    return this._products.slice();
   }
 
   /**
    * getProduct
    */
   public getProduct(id: number): Product {
-    return this._products.find(
+    return this._products.slice().find(
       (product: Product): boolean => {
         return id === product.id;
       }
@@ -43,11 +52,19 @@ export class ProductService {
    * getCommentsForProductId
    */
   public getCommentsForProductId(id: number): Comment[] {
-    return this._comments.filter(
+    return this._comments.slice().filter(
       (comment: Comment) => {
         return comment.productId === id;
       }
     );
+  }
+
+  /**
+   * addNewComment
+   */
+  public addNewComment(comment: Comment) {
+    this._comments.unshift(comment);
+    this.newCommentSubmit.emit(comment.productId);
   }
 
 }

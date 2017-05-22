@@ -8,14 +8,17 @@
   <div class="">
     <p class="pull-right">{{ comments.length }}</p>
     <p>
-      <app-stars [rating]="product.rating"></app-stars>
+      <app-stars [rating]="product.rating | number: '1.0-2'"></app-stars>
     </p>
   </div>
 </div>
 
 <div class="well">
   <div class="">
-    <app-product-new-comment></app-product-new-comment>
+    <button class="btn btn-success" (click)="isNewCommentHidden = !isNewCommentHidden">发表评论</button>
+  </div>
+  <div class="" *ngIf="!isNewCommentHidden">
+    <app-product-new-comment [product]="product"></app-product-new-comment>
   </div>
   <div class="" *ngFor="let comment of comments">
     <app-product-comment [comment]="comment"></app-product-comment>

@@ -1,3 +1,4 @@
+import { ProductService } from './home/services/product.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +21,9 @@ import { AppRoutingModule } from './app-routing.module';
     HomeModule,
     GlobalModule
   ],
-  providers: [],
+  providers: [
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

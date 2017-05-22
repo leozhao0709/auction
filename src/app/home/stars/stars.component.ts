@@ -1,25 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-stars',
   templateUrl: './stars.component.html',
   styleUrls: ['./stars.component.scss']
 })
-export class StarsComponent implements OnInit {
+export class StarsComponent implements OnInit, OnChanges {
 
   totalRating = 5;
 
   @Input()
   rating = 0;
 
+  @Output()
+  ratingChange = new EventEmitter<number>();
+
   zeroStars: boolean[] = [];
 
   @Input()
   readonly = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    // this.showStar(this.rating, this.totalRating);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.showStar(this.rating, this.totalRating);
   }
 
@@ -34,6 +42,7 @@ export class StarsComponent implements OnInit {
     if (!this.readonly) {
       this.rating = index + 1;
       this.showStar(this.rating, this.totalRating);
+      this.ratingChange.emit(this.rating);
     }
   }
 
